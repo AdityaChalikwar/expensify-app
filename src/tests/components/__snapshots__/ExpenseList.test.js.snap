@@ -32,7 +32,7 @@ exports[`should render ExpenseList with expenses 1`] = `
 exports[`should render with empty array 1`] = `
 <div>
   <p>
-    No Expenses
+    No Matches To Filters
   </p>
 </div>
 `;

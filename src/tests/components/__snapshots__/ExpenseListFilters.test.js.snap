@@ -4,6 +4,7 @@ exports[`should render ExpenseListFilters correctly 1`] = `
 <div>
   <input
     onChange={[Function]}
+    placeholder="Text Filter"
     type="text"
     value=""
   />
@@ -111,6 +112,7 @@ exports[`should render ExpenseListFilters with altFilters correctly 1`] = `
 <div>
   <input
     onChange={[Function]}
+    placeholder="Text Filter"
     type="text"
     value="bills"
   />
