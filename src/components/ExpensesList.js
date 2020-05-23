@@ -13,8 +13,7 @@ export const ExpensesList = (props) => {
                 <p>No Matches To Filters</p>
             ) : (
                 <div>
-                <p>Viewing {props.expenses.length} {expenseWord} totalling 
-                {
+                <p>Viewing {props.expenses.length} {expenseWord} totalling {
                     props.total.toLocaleString('en-IN', {
                     style: 'currency',
                     currency: 'INR'

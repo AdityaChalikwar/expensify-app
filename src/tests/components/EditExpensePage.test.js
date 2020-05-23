@@ -4,14 +4,14 @@ import {EditExpensePage} from '../../components/EditExpensePage'
 import expenses from '../fixtures/expenses'
 
 const editExpense = jest.fn()
-const removeExpense = jest.fn()
+const startRemoveExpense = jest.fn()
 const history = {push: jest.fn()}
 const wrapper = shallow(
     <EditExpensePage 
         expense={expenses[1]} 
         editExpense={editExpense} 
         history={history}
-        removeExpense={removeExpense}
+        startRemoveExpense={startRemoveExpense}
     />)
 
 test('should render editExpensePage correctly', () => {
@@ -27,7 +27,7 @@ test('should edit data correctly', () => {
 test('should remove data correctly', () => {
     wrapper.find('button').simulate('click')
     expect(history.push).toHaveBeenLastCalledWith('/')
-    expect(removeExpense).toHaveBeenLastCalledWith({
+    expect(startRemoveExpense).toHaveBeenLastCalledWith({
         id: expenses[1].id
     })
 })
