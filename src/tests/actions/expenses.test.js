@@ -1,10 +1,19 @@
-import {addExpense, startAddExpense, editExpense, removeExpense} from '../../actions/expenses'
+import {setExpenses, addExpense, startAddExpense, editExpense, removeExpense, startSetExpenses} from '../../actions/expenses'
 import expenses from '../fixtures/expenses'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import database from '../../firebase/firebase';
+import expensesReducer from '../../reducers/expenses';
 
 const createMockStore = configureMockStore([thunk])
+
+beforeEach((done) => {
+    const expensesData = {}
+    expenses.forEach(({id, description, amount, note, createdAt}) => {
+        expensesData[id] = {description, amount, note, createdAt}
+    })
+    database.ref('expenses').set(expensesData).then(() => done())
+})
 
 test('Should setup remove expense action object', () => {
     const action = removeExpense({id: '123abc'})
@@ -83,16 +92,34 @@ test('should add expense to database with defaults', (done) => {
     })
 })
 
-// test('add expense without values', () => {
-//     const action = addExpense()
-//     expect(action).toEqual({
-//         type: 'ADD_EXPENSE',
-//         expense: {
-//             id: expect.any(String),
-//             description: '',
-//             note: '',
-//             amount: 0,
-//             createdAt: 0
-//         }
-//     })
-// })
+test('should set up setExpense action object with data', () => {
+    const action = setExpenses(expenses)
+    expect(action).toEqual({
+        type: 'SET_EXPENSES',
+        expenses
+    })
+})
+
+test('should set expenses', () => {
+    const action = {
+        type: 'SET_EXPENSES',
+        expenses: [expenses[1]]
+    }
+    const state = expensesReducer(expenses, action)
+    expect(state).toEqual([expenses[1]])
+})
+
+test('should fetch expenses', (done) => {
+    const store = createMockStore({})
+    store.dispatch(startSetExpenses()).then(() => {
+        const actions = store.getActions()
+        expenses[0].id = (expenses[0].id).toString()
+        expenses[1].id = (expenses[1].id).toString()
+        expenses[2].id = (expenses[2].id).toString()
+        expect(actions[0]).toEqual({
+            type: 'SET_EXPENSES',
+            expenses
+        })
+        done()
+    })
+})
