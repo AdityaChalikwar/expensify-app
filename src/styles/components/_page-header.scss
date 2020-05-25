@@ -1,0 +1,32 @@
+.page-header {
+    background: $off-white;
+    padding: $l-size 0;
+    margin-bottom: $l-size;
+}
+
+.page-header__content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-header__actions {
+    margin-top: $m-size;
+}
+
+.page-header__title {
+    margin: 0;
+    font-weight: 300;
+    span {
+        font-weight: 700;
+    }
+}
+
+.filter-message {
+    @extend .page-header__title;
+    text-align: center;
+}
+
+.no-expense-message {
+    @extend .filter-message;
+    color: $grey;
+}

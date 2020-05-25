@@ -3,16 +3,17 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 
 const ExpensesListItem = ({id, description, amount, createdAt}) => (
-    <div>
-        <Link to={`/edit/${id}`}><h3>{description}</h3></Link>
-        <p>{amount.toLocaleString('en-IN', {
-            style: 'currency',
-            currency: 'INR'
-        })} 
-         - 
-        {moment(createdAt).format('MMM Do, YYYY. h:mm A')}</p>
-        <br/>
-    </div>
+    <Link className="list-item" to={`/edit/${id}`}>
+        <div>
+            <h4 className="list-item__title">{description}</h4>
+            <span className="list-item__subtitle">{moment(createdAt).format('MMM Do, YYYY. h:mm A')}</span>
+        </div>
+        <h4 className="list-item__data">{amount.toLocaleString('en-IN', {
+                style: 'currency',
+                currency: 'INR'
+            })}
+        </h4>
+    </Link>
 )
 
 export default ExpensesListItem

@@ -5,20 +5,28 @@ import selectExpenses from '../selectors/expenses'
 import expensesTotal from '../selectors/expenses-total'
 
 export const ExpensesList = (props) => {
-    const expenseWord = props.expenses.length === 1 ? 'exepense' : 'expenses'
+    const expenseWord = props.expenses.length === 1 ? 'expense' : 'expenses'
     return (
-        <div>
+        <div className="content-container">
         {
             props.expenses.length === 0 ? (
-                <p>No Matches To Filters</p>
+                <p className="no-expense-message">No Matches To Filters</p>
             ) : (
                 <div>
-                <p>Viewing {props.expenses.length} {expenseWord} totalling {
-                    props.total.toLocaleString('en-IN', {
-                    style: 'currency',
-                    currency: 'INR'
-                })}</p>
-                {props.expenses.map((expense, index) => <ExpenseListItem key={index} {...expense}/>)}
+                    <p className="filter-message">Viewing <span>
+                    {props.expenses.length}</span> {expenseWord} totalling <span>{
+                        props.total.toLocaleString('en-IN', {
+                        style: 'currency',
+                        currency: 'INR'
+                    })}</span></p>
+                    <div className="list-body">
+                        <div className="list-header">
+                            <div className="show-for-mobile">Expenses</div>
+                            <div className="show-for-desktop">Expense</div>
+                            <div className="show-for-desktop">Amount</div>
+                        </div>
+                        {props.expenses.map((expense, index) => <ExpenseListItem key={index} {...expense}/>)}
+                    </div>
                 </div>
             )
         }

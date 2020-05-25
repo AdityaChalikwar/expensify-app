@@ -1,20 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render expense data 1`] = `
-<div>
-  <Link
-    replace={false}
-    to="/edit/1"
-  >
-    <h3>
+<Link
+  className="list-item"
+  replace={false}
+  to="/edit/1"
+>
+  <div>
+    <h4
+      className="list-item__title"
+    >
       rent
-    </h3>
-  </Link>
-  <p>
+    </h4>
+    <span
+      className="list-item__subtitle"
+    >
+      Jan 1st, 1970. 5:30 AM
+    </span>
+  </div>
+  <h4
+    className="list-item__data"
+  >
     ₹15,000.00
-    -
-    Jan 1st, 1970. 5:30 AM
-  </p>
-  <br />
-</div>
+  </h4>
+</Link>
 `;

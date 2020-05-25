@@ -30,8 +30,12 @@ exports[`should render ExpenseList with expenses 1`] = `
 `;
 
 exports[`should render with empty array 1`] = `
-<div>
-  <p>
+<div
+  className="content-container"
+>
+  <p
+    className="no-expense-message"
+  >
     No Matches To Filters
   </p>
 </div>
